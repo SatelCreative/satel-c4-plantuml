@@ -1,0 +1,58 @@
+!unquoted procedure SatelElementStyle($client)
+  !$BY_SATEL = "built by Satel"
+  UpdateElementStyle("person", $PERSON_BG_COLOR, $ELEMENT_FONT_COLOR, $PERSON_BORDER_COLOR, $legendText="User")
+
+  UpdateElementStyle("system", $SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, $SYSTEM_BORDER_COLOR, $legendText=System $BY_SATEL)
+  UpdateElementStyle("external_system", $EXTERNAL_SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, $EXTERNAL_SYSTEM_BORDER_COLOR, $legendText=$client's system)
+
+  UpdateElementStyle("container", $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR, $legendText=Container $BY_SATEL)
+  UpdateElementStyle("external_container", $EXTERNAL_CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $EXTERNAL_CONTAINER_BORDER_COLOR, $legendText=$client's container)
+!endprocedure
+
+
+!unquoted procedure SatelDiagramTitle($client, $project, $diagramType)
+  title $client - $project\n$diagramType diagram
+!endprocedure
+
+
+!unquoted procedure SatelDiagramBase($client)
+  SatelElementStyle($client)
+
+  right footer %date("yyyy-MM-dd")
+!endprocedure
+
+
+!unquoted procedure SatelContextDiagram($client, $project)
+  !include <C4/C4_Context>
+  SatelDiagramBase($client)
+
+  SatelDiagramTitle($client, $project, "Context")
+!endprocedure
+
+
+!unquoted procedure SatelContainerDiagram($client, $project)
+  !include <C4/C4_Container>
+  SatelDiagramBase($client)
+
+  SatelDiagramTitle($client, $project, "Container")
+!endprocedure
+
+
+!unquoted procedure SatelDeploymentDiagram($client, $project)
+  !include <C4/C4_Deployment>
+  SatelDiagramBase($client)
+
+  SatelDiagramTitle($client, $project, "Deployment")
+!endprocedure
+
+
+!unquoted procedure SatelSequenceDiagram($client, $project)
+  !includeurl https://raw.githubusercontent.com/hillairet/C4Seq-Plantuml/main/c4seq.puml
+  SatelDiagramBase($client)
+
+  SatelDiagramTitle($client, $project, "Sequence")
+
+  'Since we typically include all the containers, people and external systems
+  'from the other diagrams we need to hide those that are not used/linked
+  hide unlinked
+!endprocedure
