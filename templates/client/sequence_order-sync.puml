@@ -3,7 +3,6 @@
 !includesub context.puml!BASE_INCLUDES
 !includesub container.puml!LOGO_INCLUDES
 
-!include ../C4Satel.puml
 SatelSequenceDiagram($CLIENT, $PROJECT, "Sync orders")
 
 Container(integration, "Integration app", "Python", $sprite=python)
@@ -22,6 +21,7 @@ Rel(integration, integration, "Transforms orders to Oracle format")
 Rel(integration, erp, "Sends order updates to", "REST API")
 activate erp
 Rel(erp, integration, "Returns status to", "JSON")
+deactivate erp
 
 deactivate integration
 
