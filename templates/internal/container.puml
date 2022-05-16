@@ -1,0 +1,39 @@
+@startuml
+
+!includesub context.puml!BASE_INCLUDES
+
+!startsub LOGO_INCLUDES
+!include <logos/python>
+!include <logos/mongodb>
+!endsub
+
+SatelContainerDiagram($CLIENT, $PROJECT)
+
+'skinparam maxMessageSize 100
+
+!includesub context.puml!BASE_EXTERNALS
+
+System_Boundary(supercoolapp, "SuperCool app") {
+!startsub CONTAINER_INCLUDES
+Container(backend, "Backend app", "Python", "Backend component of the app\n* Process customers\n*Serve embedded frontend", $sprite=python)
+Container(frontend, "App embedded UI", "Typescript, React", "Shopify store with custom theme", $sprite=shopify)
+ContainerDb(database, "App storage", "Mongo", "Shopify store with custom theme", $sprite=mongodb)
+!endsub
+}
+
+Rel_D(customer, shopify, "Purchases products on")
+Rel_L(manager, frontend, "Manages app and its settings in")
+
+Rel_R(backend, shopify, "Installs as embedded app into", "OAuth2")
+Rel_L(shopify, backend, "Sends new customers to", "Webhook, REST, JSON")
+
+Rel_U(frontend, backend, "Calls to get data fom and send data to", "GraphhQL")
+
+Rel_U(backend, email, "Triggers email in", "REST API, JSON")
+Rel_R(email, customer, "Sends email to", "SMTP")
+
+Rel_U(backend, database, "Reads and writes to", "TPC/IP Socket")
+
+SHOW_LEGEND()
+
+@enduml
