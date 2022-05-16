@@ -1,0 +1,30 @@
+@startuml
+
+!includesub context.puml!BASE_INCLUDES
+
+!startsub LOGO_INCLUDES
+!include <logos/shopify>
+!include <logos/python>
+!endsub
+
+SatelContainerDiagram("ACME corporation", "Ecommerce solution")
+
+'skinparam maxMessageSize 100
+
+!includesub context.puml!BASE_EXTERNALS
+
+System_Boundary(empstore, "Ecommerce store") {
+!startsub CONTAINER_INCLUDES
+Container(integration, "Integration app", "Python", "Integrate with ACME's backend\n* Sync every 30 min", $sprite=python)
+Container(shstore, "Shopify store", "Liquid, HTML, CSS, Javascript", "Shopify store with custom theme", $sprite=shopify)
+!endsub
+}
+
+Rel_D(customer, shstore, "Purchases products on")
+
+Rel_D(integration, erp, "Reads product data from and sends orders to")
+Rel_L(integration, shstore, "Push product data to and poll order updates from")
+
+SHOW_LEGEND()
+
+@enduml

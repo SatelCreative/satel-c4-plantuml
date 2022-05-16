@@ -1,0 +1,28 @@
+@startuml
+
+!includesub context.puml!BASE_INCLUDES
+!includesub container.puml!LOGO_INCLUDES
+
+!include ../C4Satel.puml
+SatelSequenceDiagram($CLIENT, $PROJECT, "Sync orders")
+
+Container(integration, "Integration app", "Python", $sprite=python)
+Container(shstore, "Shopify store", $sprite=shopify)
+System_Ext(erp, "ERP", $sprite=oracle)
+
+activate integration
+Rel(integration, shstore, "Queries orders from", "GraphQL")
+activate shstore
+
+Rel_Dash(shstore, integration, "Returns updated orders to", "JSON")
+deactivate shstore
+
+Rel(integration, integration, "Transforms orders to Oracle format")
+
+Rel(integration, erp, "Sends order updates to", "REST API")
+activate erp
+Rel(erp, integration, "Returns status to", "JSON")
+
+deactivate integration
+
+@enduml

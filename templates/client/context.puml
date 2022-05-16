@@ -1,0 +1,30 @@
+@startuml
+!startsub BASE_INCLUDES
+!includeurl https://raw.githubusercontent.com/SatelCreative/satel-c4-plantuml/main/C4Satel.puml
+''Include the logos used for the externals in this startsub:
+!include <logos/oracle>
+
+!$CLIENT="ACME corporation"
+!$PROJECT="Ecommerce store"
+!endsub
+
+SatelContextDiagram($CLIENT, $PROJECT)
+
+''Limit the width of the messages on arrows
+'skinparam maxMessageSize 100
+
+!startsub BASE_EXTERNALS
+Person(customer, "Customer")
+System_Ext(erp, "ERP", "ACME corporation's ERP", $sprite=oracle)
+!endsub
+
+System(store, "Ecommerce Store", "Store where customers by things")
+
+Rel_D(customer, store, "Purchases products on")
+
+Rel_D(store, erp, "Reads product data from and sends orders to")
+
+
+SHOW_LEGEND()
+
+@enduml
