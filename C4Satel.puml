@@ -1,12 +1,19 @@
 !unquoted procedure SatelElementStyle($client)
-  !$BY_SATEL = "built by Satel"
+  !if (%lower($client) == 'satel')
+    !$built = "built in this project"
+    !$external = "Third party"
+  !else
+    !$built = "built by Satel"
+    !$external = $client + "s"
+  !endif
+
   UpdateElementStyle("person", $PERSON_BG_COLOR, $ELEMENT_FONT_COLOR, $PERSON_BORDER_COLOR, $legendText="User")
 
-  UpdateElementStyle("system", $SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, $SYSTEM_BORDER_COLOR, $legendText=System $BY_SATEL)
-  UpdateElementStyle("external_system", $EXTERNAL_SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, $EXTERNAL_SYSTEM_BORDER_COLOR, $legendText=$client's system)
+  UpdateElementStyle("system", $SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, $SYSTEM_BORDER_COLOR, $legendText=System $built)
+  UpdateElementStyle("external_system", $EXTERNAL_SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, $EXTERNAL_SYSTEM_BORDER_COLOR, $legendText=$external system)
 
-  UpdateElementStyle("container", $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR, $legendText=Container $BY_SATEL)
-  UpdateElementStyle("external_container", $EXTERNAL_CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $EXTERNAL_CONTAINER_BORDER_COLOR, $legendText=$client's container)
+  UpdateElementStyle("container", $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR, $legendText=Container $built)
+  UpdateElementStyle("external_container", $EXTERNAL_CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $EXTERNAL_CONTAINER_BORDER_COLOR, $legendText=$external container)
 !endprocedure
 
 
