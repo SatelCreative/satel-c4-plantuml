@@ -46,11 +46,12 @@
 !endprocedure
 
 
-!unquoted procedure SatelSequenceDiagram($client, $project)
+!unquoted procedure SatelSequenceDiagram($client, $project, $sequence)
+  !include <C4/C4>
   !includeurl https://raw.githubusercontent.com/hillairet/C4Seq-Plantuml/main/c4seq.puml
   SatelDiagramBase($client)
 
-  SatelDiagramTitle($client, $project, "Sequence")
+  SatelDiagramTitle($client, $project, "$sequence\nSequence")
 
   'Since we typically include all the containers, people and external systems
   'from the other diagrams we need to hide those that are not used/linked
