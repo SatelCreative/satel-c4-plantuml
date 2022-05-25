@@ -54,9 +54,10 @@
 
 
 !unquoted procedure SatelSequenceDiagram($client, $project, $sequence)
-  !include <C4/C4>
   !includeurl https://raw.githubusercontent.com/hillairet/C4Seq-Plantuml/main/c4seq.puml
-  SatelDiagramBase($client)
+
+  ' The legend is problematic to get if we can even get it so don't bother with that
+  right footer %date("yyyy-MM-dd")
 
   SatelDiagramTitle($client, $project, "$sequence\nSequence")
 
