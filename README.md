@@ -11,7 +11,17 @@ following a specific format:
 
 The examples provided in  give a guideline for file naming convention and reuse of code
 between the various diagrams in order to avoid duplicating code and mismatches in naming
-of diagram elements.
+of diagram elements:
+
+```bash
+docs
+├── context.puml     # for the context diagram
+├── container.puml   # for the container diagram
+├── deployment.puml  # for the deployment diagram
+└── sequence_*.puml  # for each sequence diagram
+```
+
+## Example
 
 ```plantuml
 ' context.puml
