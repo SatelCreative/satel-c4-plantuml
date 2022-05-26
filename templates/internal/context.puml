@@ -1,10 +1,9 @@
 @startuml
 !startsub BASE_INCLUDES
-!includeurl https://raw.githubusercontent.com/SatelCreative/satel-c4-plantuml/main/C4Satel.puml
+!include https://raw.githubusercontent.com/SatelCreative/satel-c4-plantuml/main/C4Satel.puml
 ''Include the logos used for the externals in this startsub:
 !include <logos/shopify>
 !include <logos/aws-ses>
-
 
 !$CLIENT="Satel"
 !$PROJECT="SuperCool app"
