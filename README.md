@@ -21,7 +21,42 @@ docs
 └── sequence_*.puml  # for each sequence diagram
 ```
 
-## Example
+## Diagram setup function
+
+This library provides a function for each type of diagram that applies the standardized
+format:
+
+```plantuml
+SatelContextDiagram($client, $project)
+SatelContainerDiagram($client, $project)
+SatelDeploymentDiagram($client, $project)
+SatelSequenceDiagram($client, $project)
+```
+
+## Client versus internal diagram
+
+The wording and formatting is slightly different if the diagrams are for a client's project
+or one of Satel's internal project. The library knows that it's an internal project when
+the client is set to `Satel`:
+
+* Client project context diagram
+```plantuml
+@startuml
+!include https://raw.githubusercontent.com/SatelCreative/satel-c4-plantuml/main/C4Satel.puml
+
+SatelContextDiagram("ACME corporation", "Ecommerce store")
+```
+* Satel internal project context diagram
+```plantuml
+@startuml
+!include https://raw.githubusercontent.com/SatelCreative/satel-c4-plantuml/main/C4Satel.puml
+
+SatelContextDiagram("Satel", "Ecommerce store")
+```
+
+## Examples
+
+### Client project
 
 ```plantuml
 ' context.puml
@@ -43,4 +78,36 @@ SHOW_LEGEND()
 @enduml
 ```
 
-![Example of a context diagram](README.png)
+![Example of a context diagram for a client project](README.png)
+
+### Satel internal project
+
+
+```plantuml
+' context.puml
+@startuml
+!include https://raw.githubusercontent.com/SatelCreative/satel-c4-plantuml/main/C4Satel.puml
+!include <logos/shopify>
+!include <logos/aws-ses>
+
+SatelContextDiagram("Satel", "SuperCool app")
+
+Person(customer, "Customer")
+Person(manager, "Store manager")
+System_Ext(shopify, "Shopify store", "Store equipped with the SuperCool app", $sprite=shopify)
+System_Ext(email, "Email service", "AWS SES", $sprite=aws-ses)
+System(app, "SuperCool app", "A Shopify app that will change the world")
+
+Rel_D(customer, shopify, "Purchases products on")
+Rel_R(app, shopify, "Installs as embedded app into")
+Rel_L(shopify, app, "Sends new customers to")
+Rel_U(app, email, "Triggers email in")
+Rel_R(email, customer, "Sends email to")
+Rel_U(manager, app, "Manages app and its settings in")
+
+SHOW_LEGEND()
+
+@enduml
+```
+
+![Example of a context diagram for an internal project](README_001.png)
