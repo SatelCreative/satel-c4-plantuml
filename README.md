@@ -1,7 +1,7 @@
 # satel-c4-plantuml
 
 This repository provides handy templates and functions to create C4 diagrams
-following a specific format:
+following the specific conventions used at SatelCreative:
 
 * Rename elements in the legend, e.g.:
     * "Person" → "User"
