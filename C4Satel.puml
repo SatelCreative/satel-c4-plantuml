@@ -4,7 +4,7 @@
     !$external = "Third party"
   !else
     !$built = "built by Satel"
-    !$external = $client + "s"
+    !$external = $client + "'s"
   !endif
 
   UpdateElementStyle("person", $PERSON_BG_COLOR, $ELEMENT_FONT_COLOR, $PERSON_BORDER_COLOR, $legendText="User")
