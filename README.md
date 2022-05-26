@@ -51,7 +51,7 @@ SatelContextDiagram("ACME corporation", "Ecommerce store")
 @startuml
 !include https://raw.githubusercontent.com/SatelCreative/satel-c4-plantuml/main/C4Satel.puml
 
-SatelContextDiagram("Satel", "Ecommerce store")
+SatelContextDiagram("Satel", "SuperCool app")
 ```
 
 ## Examples
