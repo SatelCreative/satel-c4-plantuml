@@ -1,4 +1,4 @@
-# satel-c4-plantuml
+# Satel C4 modeling with plantuml
 
 This repository provides handy templates and functions to create C4 diagrams
 following the specific conventions used at SatelCreative:
