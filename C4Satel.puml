@@ -1,3 +1,5 @@
+!include <C4/C4_Container>
+
 !unquoted procedure SatelElementStyle($client)
   !if (%lower($client) == 'satel')
     !$built = "built in this project"
@@ -30,7 +32,6 @@
 
 
 !unquoted procedure SatelContextDiagram($client, $project)
-  !include <C4/C4_Context>
   SatelDiagramBase($client)
 
   SatelDiagramTitle($client, $project, "Context")
@@ -38,7 +39,6 @@
 
 
 !unquoted procedure SatelContainerDiagram($client, $project)
-  !include <C4/C4_Container>
   SatelDiagramBase($client)
 
   SatelDiagramTitle($client, $project, "Container")
