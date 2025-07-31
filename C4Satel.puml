@@ -5,7 +5,7 @@
     !$built = "built in this project"
     !$external = "Third party"
   !else
-    !$built = "built by Satel"
+    !$built = " built and/or maintained by Satel"
     !$external = $client + "'s"
   !endif
 
